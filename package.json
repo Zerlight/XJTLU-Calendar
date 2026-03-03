@@ -1,6 +1,6 @@
 {
   "name": "xjtlu-calendar",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Automatic timetable exporter for XJTLU students",
   "main": "index.js",
   "scripts": {
