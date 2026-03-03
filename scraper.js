@@ -183,15 +183,15 @@ async function startScraping(options, broadcast) {
         
         const icsContent = generateICS(timetableData, options);
         
-        const outputPath = path.join(__dirname, 'public', 'xjtlu-calendar.ics');
-        fs.writeFileSync(outputPath, icsContent, 'utf-8');
+        // Save to memory instead of writing to disk which breaks when compiled with pkg
+        global.generatedIcs = icsContent;
 
         broadcast({ 
             title: 'Complete', 
             message: 'Your calendar is ready to download.', 
             progress: 100, 
             state: 'complete',
-            downloadUrl: '/xjtlu-calendar.ics'
+            downloadUrl: '/api/download'
         });
 
         // Do not close the browser here so the user can keep it open

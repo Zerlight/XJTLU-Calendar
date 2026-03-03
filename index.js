@@ -59,6 +59,16 @@ app.post('/api/start', async (req, res) => {
     }
 });
 
+app.get('/api/download', (req, res) => {
+    if (global.generatedIcs) {
+        res.setHeader('Content-Type', 'text/calendar');
+        res.setHeader('Content-Disposition', 'attachment; filename="xjtlu-calendar.ics"');
+        res.send(global.generatedIcs);
+    } else {
+        res.status(404).send('Calendar file not found or not generated yet.');
+    }
+});
+
 app.listen(PORT, async () => {
     console.log(`Config server listening on http://localhost:${PORT}`);
     
