@@ -18,5 +18,19 @@
     "express": "^5.2.1",
     "ics": "^3.8.1",
     "puppeteer": "^24.37.5"
+  },
+  "bin": "index.js",
+  "pkg": {
+    "assets": [
+      "public/**/*"
+    ],
+    "targets": [
+      "node18-macos-x64",
+      "node18-macos-arm64",
+      "node18-win-x64",
+      "node18-win-arm64",
+      "node18-linux-x64",
+      "node18-linux-arm64"
+    ]
   }
 }
