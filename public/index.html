@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XJTLU Calendar Exporter</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main class="card">
+        <div class="card-header">
+            <h1 class="card-title">XJTLU Calendar Exporter</h1>
+            <p class="card-description">Synchronize your E-Bridge academic schedule to a universal .ics format.</p>
+        </div>
+
+        <!-- Step 1: Configuration -->
+        <div class="card-content" id="configSection">
+            <div class="input-group">
+                <label class="label" for="semesterSelect">Target Semester</label>
+                <select class="input" id="semesterSelect">
+                    <option value="0">Semester 1</option>
+                    <option value="1">Semester 2</option>
+                </select>
+                <p class="help-text">Select which semester's academic weeks to map against.</p>
+            </div>
+
+            <div class="input-group">
+                <label class="label">Available Variables for customization</label>
+                <p class="help-text">${name}, ${activityType}, ${moduleId}, ${staff}, ${location}, ${week}</p>
+            </div>
+
+            <div class="input-group">
+                <label class="label" for="titleInput">Event Title Template</label>
+                <input class="input" type="text" id="titleInput" value="${name} (${activityType})" placeholder="e.g. ${name} (${activityType})">
+                <p class="help-text">Preview: <span class="preview-text" id="titlePreview">Software Engineering (Lecture)</span></p>
+            </div>
+
+            <div class="input-group">
+                <label class="label" for="locationInput">Location Template</label>
+                <input class="input" type="text" id="locationInput" value="${location}" placeholder="e.g. ${location}">
+                <p class="help-text">Preview: <span class="preview-text" id="locationPreview">SIP-SC176</span></p>
+            </div>
+
+            <div class="input-group">
+                <label class="label" for="descInput">Description Template</label>
+                <textarea class="input textarea" id="descInput" rows="2" placeholder="e.g. Module: ${moduleId}...">Module: ${moduleId}&#10;Staff: ${staff}&#10;Type: ${activityType}&#10;Week ${week}</textarea>
+                <p class="help-text">Preview:<br><span class="preview-text" id="descPreview" style="white-space: pre-wrap;">Module: CPT204<br>Staff: John Doe<br>Type: Lecture<br>Week 1</span></p>
+            </div>
+
+            <div class="input-group">
+                <label class="label" for="reminderInput">Event Reminder (Minutes before)</label>
+                <input class="input" type="number" id="reminderInput" value="15" min="0" step="1" placeholder="e.g. 15">
+            </div>
+
+            <button class="btn btn-primary" id="continueToInstructionsBtn">
+                <span class="btn-text">Continue</span>
+            </button>
+        </div>
+
+        <!-- Step 2: Instructions -->
+        <div class="card-content hidden" id="instructionSection">
+            <div class="instruction-body">
+                <h2 class="status-title">Instructions</h2>
+                <p class="status-desc">
+                    This tool automates the process of extracting your personal timetable from the E-Bridge system and converting it into a standard <code>.ics</code> calendar file that you can import into Apple Calendar, Google Calendar, or Outlook.
+                </p>
+                <ul class="instruction-list">
+                    <li>The script will launch a new browser tab asking you to log into E-Bridge.</li>
+                    <li>After logging in, do not close the browser! The script will automatically navigate the site to extract your Academic Calendar and Lesson Timetable.</li>
+                    <li>Once complete, a download button will appear right here.</li>
+                </ul>
+            </div>
+            <button class="btn btn-primary" id="startBtn">
+                <span class="loader hidden"></span>
+                <span class="btn-text">Launch & Connect E-Bridge</span>
+            </button>
+        </div>
+
+        <div class="card-content hidden" id="statusSection">
+            <div class="progress-container">
+                <div class="progress-header">
+                    <span id="statusTitle">Connecting...</span>
+                </div>
+                <p class="progress-message" id="statusDesc">Please locate the newly opened browser window and log into E-Bridge.</p>
+                <div class="progress">
+                    <div class="progress-indicator" id="progressFill"></div>
+                </div>
+            </div>
+            
+            <div class="download-wrapper hidden" id="downloadSection">
+                <a id="downloadBtn" class="btn btn-primary" download="xjtlu-calendar.ics">Download Calendar (.ics)</a>
+            </div>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>

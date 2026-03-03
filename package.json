@@ -1,0 +1,22 @@
+{
+  "name": "xjtlu-calendar",
+  "version": "1.0.0",
+  "description": "Automatic timetable exporter for XJTLU students",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "node index.js"
+  },
+  "keywords": [],
+  "author": "Zerlight",
+  "license": "MIT",
+  "packageManager": "pnpm@10.28.1",
+  "type": "commonjs",
+  "dependencies": {
+    "date-fns": "^4.1.0",
+    "express": "^5.2.1",
+    "ics": "^3.8.1",
+    "puppeteer": "^24.37.5"
+  }
+}
