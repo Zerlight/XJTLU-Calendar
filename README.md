@@ -1,5 +1,9 @@
 # XJTLU Calendar Exporter
 
+[English](README.md) | [中文](README_zh.md)
+
+You can download the executable file directly from [Release](https://github.com/Zerlight/XJTLU-Calendar/releases) and run it without the hassle of configuring your environment.
+
 An automated, privacy-first tool for XJTLU students to extract their personal Lesson Timetables from the E-Bridge system and convert them into standard `.ics` calendar files. These files can be easily imported into Apple Calendar, Google Calendar, Outlook, and other major calendar applications.
 
 The tool parses the official University Academic Calendar to precisely calculate the exact dates for each teaching week, handling holidays, reading weeks, and month wrap-arounds perfectly.
