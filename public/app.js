@@ -47,6 +47,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initial update
     updatePreviews();
 
+    const enableReminderCheckbox = document.getElementById('enableReminder');
+    const reminderInputContainer = document.getElementById('reminderInputContainer');
+
+    enableReminderCheckbox.addEventListener('change', (e) => {
+        if (e.target.checked) {
+            reminderInputContainer.classList.remove('hidden');
+        } else {
+            reminderInputContainer.classList.add('hidden');
+        }
+    });
+
     continueBtn.addEventListener('click', () => {
         configSection.classList.add('hidden');
         instructionSection.classList.remove('hidden');
@@ -58,6 +69,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const titleTemplate = document.getElementById('titleInput').value;
         const locationTemplate = document.getElementById('locationInput').value;
         const descTemplate = document.getElementById('descInput').value;
+
+        const enableReminder = document.getElementById('enableReminder').checked;
 
         // UI Update
         btnText.textContent = 'Connecting...';
@@ -71,6 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ 
                     semesterIndex: parseInt(semesterChosen),
+                    enableReminder,
                     reminder: parseInt(reminderMinutes) || 15,
                     titleTemplate,
                     locationTemplate,

@@ -49,8 +49,17 @@
             </div>
 
             <div class="input-group">
-                <label class="label" for="reminderInput">Event Reminder (Minutes before)</label>
-                <input class="input" type="number" id="reminderInput" value="15" min="0" step="1" placeholder="e.g. 15">
+                <div class="switch-wrapper" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem;">
+                    <label class="label" for="enableReminder" style="margin-bottom: 0;">Enable Event Reminder</label>
+                    <label class="switch">
+                        <input type="checkbox" id="enableReminder" checked>
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <div id="reminderInputContainer">
+                    <label class="label" for="reminderInput">Event Reminder (Minutes before)</label>
+                    <input class="input" type="number" id="reminderInput" value="15" min="0" step="1" placeholder="e.g. 15">
+                </div>
             </div>
 
             <button class="btn btn-primary" id="continueToInstructionsBtn">

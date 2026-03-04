@@ -89,6 +89,8 @@ function generateICS(timetableData, options = {}) {
                 week: week
             };
             
+            const enableReminder = options.enableReminder !== false; // true by default
+
             const event = {
                 title: processTemplate(titleTpl, ctx),
                 description: processTemplate(descTpl, ctx),
@@ -98,11 +100,14 @@ function generateICS(timetableData, options = {}) {
                 end: [classDate.getFullYear(), classDate.getMonth() + 1, classDate.getDate(), endHours, endMinutes],
                 startInputType: 'utc',
                 endInputType: 'utc',
-                categories: [item.moduleId, item.activityType],
-                alarms: [
-                    { action: 'display', description: 'Class Reminder', trigger: { minutes: reminderMinutes, before: true } }
-                ]
+                categories: [item.moduleId, item.activityType]
             };
+            
+            if (enableReminder) {
+                event.alarms = [
+                    { action: 'display', description: 'Class Reminder', trigger: { minutes: reminderMinutes, before: true } }
+                ];
+            }
             
             events.push(event);
         }

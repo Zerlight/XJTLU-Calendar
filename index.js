@@ -34,7 +34,7 @@ app.get('/api/status', (req, res) => {
 });
 
 app.post('/api/start', async (req, res) => {
-    const { semesterIndex, reminder, titleTemplate, locationTemplate, descTemplate } = req.body;
+    const { semesterIndex, enableReminder, reminder, titleTemplate, locationTemplate, descTemplate } = req.body;
     
     // Respond immediately to the frontend, scraper will run asynchronously
     res.json({ status: 'started' });
@@ -42,6 +42,7 @@ app.post('/api/start', async (req, res) => {
     try {
         await startScraping({
             semesterIndex,
+            enableReminder,
             reminderMinutes: reminder,
             titleTemplate,
             locationTemplate,
